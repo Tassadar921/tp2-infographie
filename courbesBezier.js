@@ -63,6 +63,4 @@ geometry = new THREE.BufferGeometry().setFromPoints(points);  // on affiche les 
 drawing = new THREE.Line(geometry, material); // on relie les points grace à .Line de façon à dessiner la courbe paramétrique
 scene.add(drawing); // on ajoute le dessin dans la scène
 
-
-
 renderer.render(scene, camera); // on fait le rendu
