@@ -6,7 +6,25 @@
         <style>body{margin: 0;}</style>
     </head>
     <body>
-        <div style="position:absolute; width:auto; height:auto; bottom:0px; background-color: black;"><button id="choixCourbe1">Courbe 1</button><br/><button id="choixCourbe2">Courbe 2</button><br/><button id="choixCourbe3">Courbe 3</button><br/><button id="choixCourbeNew">Fenetre vide</button><br/></div>
+        <div style="color:white; position:absolute; width:auto; height:auto; bottom:0px; background-color: black;">
+            <div>
+                <button id="berstein">Berstein</button>
+                <button id="decasteljau">Decasteljau</button>
+                <button id="refresh">Refresh</button>
+            </div>
+            <form id="formCheckboxes">
+                <input type="checkbox" id="courbe1" name="Courbe 1" checked>
+                <label id="select1" for="courbe1">Courbe 1</label>
+                <input type="checkbox" id="courbe2" name="Courbe 2">
+                <label id="select2" for="courbe2">Courbe 2</label>
+                <input type="checkbox" id="courbe3" name="Courbe 3">
+                <label id="select3" for="courbe3">Courbe 3</label>
+            </form>
+            <div>
+                <button id="new">Nouvelle courbe</button>
+            </div>
+        </div>
+
         <img src="bin.png" id="bin" style="position:absolute; width:50px; display:none; right:20px; top:20px">
         <script src="three.js"></script>
         <script src="maj.js"></script>

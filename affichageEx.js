@@ -1,31 +1,41 @@
-document.getElementById("choixCourbe1").addEventListener("click",(event)=>{
-    scene = new THREE.Scene();
+document.getElementById("refresh").addEventListener("click",(event)=>{
+    clear();
+    for(let i = 0; i < nbCourbes; i++){
+        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i]));
+    }
+});
 
-    pointsControle = pointsControle1;
-    
-    miseAJour(chargeDraw(pointsControle));
-})
+document.getElementById("new").addEventListener("click",(event)=>{
+    nbCourbes++;
+        
+    let tmp = new Array;
+    tabPointsControle.push(tmp)
 
-document.getElementById("choixCourbe2").addEventListener("click",(event)=>{
-    scene = new THREE.Scene();
+    let clone1 = document.getElementById("courbe1").cloneNode();
+    let clone2 = document.getElementById("select1").cloneNode();
 
-    pointsControle = pointsControle2;
-    
-    miseAJour(chargeDraw(pointsControle));
-})
+    clone1.setAttribute("id","courbe" + nbCourbes);
+    clone1.setAttribute("name","courbe " + nbCourbes);
+    document.getElementById("formCheckboxes").appendChild(clone1);
 
-document.getElementById("choixCourbe3").addEventListener("click",(event)=>{
-    scene = new THREE.Scene();
+    clone2.setAttribute("id","select" + nbCourbes);
+    clone2.setAttribute("for","courbe" + nbCourbes);
+    clone2.innerHTML = "courbe " + nbCourbes;
+    document.getElementById("formCheckboxes").appendChild(clone2);
 
-    pointsControle = pointsControle3;
-    
-    miseAJour(chargeDraw(pointsControle));
-})
+    document.getElementById("select"+nbCourbes).addEventListener("click",(event)=>{
+        event.preventDefault();
+    });    
+});
 
-document.getElementById("choixCourbeNew").addEventListener("click",(event)=>{
-    scene = new THREE.Scene();
-    
-    pointsControle = [];
-    
-    miseAJour(chargeDraw(pointsControle));
-})
+document.getElementById("select1").addEventListener("click",(event)=>{
+    event.preventDefault();
+    console.log(document.getElementById("select4"));
+});
+document.getElementById("select2").addEventListener("click",(event)=>{
+    event.preventDefault();
+});
+document.getElementById("select3").addEventListener("click",(event)=>{
+    event.preventDefault();
+});
+

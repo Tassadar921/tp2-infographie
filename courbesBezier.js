@@ -9,31 +9,35 @@ camera.lookAt( 0, 0, 0 );
 
 scene.background = new THREE.Color(0, 0, 0);
 
-const material = new THREE.LineBasicMaterial({color: 0x1495A4});
-const material2 = new THREE.LineBasicMaterial({color: 0xFF0000});
-const materialPoints = new THREE.PointsMaterial({color: 0xFFFF00, size : 0.15});
+let tabPointsControle = initialisationCourbes();
 
-let geometry;
-let drawing;
+let nbCourbes = 3;
 
-let pointsControle1 = new Array;
-pointsControle1.push(new THREE.Vector3(0,0,0));
-pointsControle1.push(new THREE.Vector3(0,1,0));
-pointsControle1.push(new THREE.Vector3(1,1,0));
-pointsControle1.push(new THREE.Vector3(1,0,0));
+miseAJour(chargeDraw(tabPointsControle[0]));
 
-let pointsControle2 = new Array;
-pointsControle2.push(new THREE.Vector3(0,0,0));
-pointsControle2.push(new THREE.Vector3(1,0,0));
-pointsControle2.push(new THREE.Vector3(0,1,0));
-pointsControle2.push(new THREE.Vector3(1,1,0));
+function initialisationCourbes() {
+    let pointsControle1 = new Array;
+    pointsControle1.push(new THREE.Vector3(0,0,0));
+    pointsControle1.push(new THREE.Vector3(0,1,0));
+    pointsControle1.push(new THREE.Vector3(1,1,0));
+    pointsControle1.push(new THREE.Vector3(1,0,0));
+    
+    let pointsControle2 = new Array;
+    pointsControle2.push(new THREE.Vector3(0,0,0));
+    pointsControle2.push(new THREE.Vector3(1,0,0));
+    pointsControle2.push(new THREE.Vector3(0,1,0));
+    pointsControle2.push(new THREE.Vector3(1,1,0));
+    
+    let pointsControle3 = new Array;
+    pointsControle3.push(new THREE.Vector3(0,0,0));
+    pointsControle3.push(new THREE.Vector3(1,1,0));
+    pointsControle3.push(new THREE.Vector3(0,1,0));
+    pointsControle3.push(new THREE.Vector3(1,0,0));
+    
+    let tabPointControle = new Array;
+    tabPointControle.push(pointsControle1);
+    tabPointControle.push(pointsControle2);
+    tabPointControle.push(pointsControle3);
 
-let pointsControle3 = new Array;
-pointsControle3.push(new THREE.Vector3(0,0,0));
-pointsControle3.push(new THREE.Vector3(1,1,0));
-pointsControle3.push(new THREE.Vector3(0,1,0));
-pointsControle3.push(new THREE.Vector3(1,0,0));
-
-let pointsControle = pointsControle3;
-
-miseAJour(chargeDraw(pointsControle));
+    return tabPointControle
+}

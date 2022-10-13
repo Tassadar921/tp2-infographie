@@ -1,5 +1,12 @@
 function chargeDraw(pointsControle) {
     if(pointsControle.length == 0) return []
+    
+    let geometry;
+    let drawing;
+
+    const material = new THREE.LineBasicMaterial({color: randomColor()});
+    const material2 = new THREE.LineBasicMaterial({color: randomColor()});
+    const materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
 
     const vertices = [];
 
@@ -41,3 +48,12 @@ function miseAJour(drawings) {
     renderer.render(scene, camera); // on fait le rendu
 }
 
+function clear() {
+    scene = new THREE.Scene();
+
+    renderer.render(scene, camera); // on fait le rendu
+}
+
+function randomColor() {
+    return parseInt('0x' + (('00000'+(Math.random()*(1<<24)|0).toString(16).toUpperCase()).slice(-6)));
+}
