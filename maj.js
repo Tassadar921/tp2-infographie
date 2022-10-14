@@ -1,6 +1,4 @@
-function chargeDraw(pointsControle) {
-    if(pointsControle.length == 0) return []
-    
+function chargeDraw(pointsControle) {    
     let geometry;
     let drawing;
 
@@ -10,6 +8,7 @@ function chargeDraw(pointsControle) {
 
     const vertices = [];
 
+    
     for ( let i = 0; i < pointsControle.length; i ++ ) {
 
         const x = pointsControle[i].x;
