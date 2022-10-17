@@ -19,8 +19,8 @@ function createBerstein(pointsControle) {
                 y = y + pointsControle[i].y * Bern;
             }
             courbe.push(new THREE.Vector3(x,y,0));
-        }        
-        
+        }
+       
         return courbe;
     }
     else {

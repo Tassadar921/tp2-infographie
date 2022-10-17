@@ -1,4 +1,4 @@
-function chargeDraw(pointsControle) {    
+function chargeDraw(pointsControle, methode) {    
     let geometry;
     let drawing;
 
@@ -18,8 +18,16 @@ function chargeDraw(pointsControle) {
         vertices.push( x, y, z );
 
     }
+    let points = new Array;
 
-    let points = createBerstein(pointsControle);
+    switch (methode) {
+        case "bernstein":
+            points = createBerstein(pointsControle);
+            break
+        case "decasteljau":
+            points = createDecastlejau(pointsControle);
+            break
+    }
 
     let drawings = [];
 

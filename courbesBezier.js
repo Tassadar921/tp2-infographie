@@ -13,7 +13,9 @@ let tabPointsControle = initialisationCourbes();
 
 let nbCourbes = 3;
 
-miseAJour(chargeDraw(tabPointsControle[0]));
+let methode = "bernstein";
+
+miseAJour(chargeDraw(tabPointsControle[0], methode));
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;

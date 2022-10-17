@@ -1,7 +1,29 @@
+document.getElementById("bernstein").style = "background-color: lightgrey;";
+
+document.getElementById("bernstein").addEventListener("click",(event)=>{
+    clear();
+    methode = "bernstein";
+    for(let i = 0; i < nbCourbes; i++){
+        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
+    }
+    document.getElementById("bernstein").style = "background-color: lightgrey;";
+    document.getElementById("decasteljau").style = "";
+});
+
+document.getElementById("decasteljau").addEventListener("click",(event)=>{
+    clear();
+    methode = "decasteljau";
+    for(let i = 0; i < nbCourbes; i++){
+        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
+    }
+    document.getElementById("bernstein").style = "";
+    document.getElementById("decasteljau").style = "background-color: lightgrey;";
+});
+
 document.getElementById("refresh").addEventListener("click",(event)=>{
     clear();
     for(let i = 0; i < nbCourbes; i++){
-        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i]));
+        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
     }
 });
 
