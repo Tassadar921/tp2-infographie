@@ -12,14 +12,18 @@ scene.background = new THREE.Color(0, 0, 0);
 let tabPointsControle = initialisationCourbes();
 
 let nbCourbes = 3;
+const pointSize = 3;
+let planeID;
 
 let methode = "bernstein";
+clear();
 
 miseAJour(chargeDraw(tabPointsControle[0], methode));
+initPointer();
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;
-    pointsControle1.push(new THREE.Vector3(0,0,0));
+    pointsControle1.push(new THREE.Vector3(-1,0,0));
     pointsControle1.push(new THREE.Vector3(0,1,0));
     pointsControle1.push(new THREE.Vector3(1,1,0));
     pointsControle1.push(new THREE.Vector3(1,0,0));
