@@ -34,7 +34,7 @@ function chargeDraw(pointsControle, methode) {
         vertices.push( x, y, z );
 
         geometry = new THREE.BufferGeometry();
-        geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, pointSize ));
+        geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ));
         drawing = new THREE.Points(geometry, materialPoints);
         scene.getObjectById(planeID).add(drawing);
     }
@@ -65,8 +65,8 @@ configPlane = () => {
         renderer.domElement.width,
         renderer.domElement.height
     );
-    // const planeMaterial = new THREE.MeshBasicMaterial({opacity: 0, transparent: true});
-    const planeMaterial = new THREE.MeshBasicMaterial({color: new THREE.Color(1,1,1)});
+    const planeMaterial = new THREE.MeshBasicMaterial({opacity: 0, transparent: true});
+    // const planeMaterial = new THREE.MeshBasicMaterial({color: new THREE.Color(1,1,1)});
     const plane = new THREE.Mesh(geometry, planeMaterial);
     planeID = plane.id;
     return plane;

@@ -26,6 +26,7 @@ initializationDragging = () => {
     });
 
     draggable.addEventListener('drag', (e) => {
+        console.log(e);
         const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(pointer, camera);
 

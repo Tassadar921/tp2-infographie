@@ -12,7 +12,6 @@ scene.background = new THREE.Color(0, 0, 0);
 let tabPointsControle = initialisationCourbes();
 
 let nbCourbes = 3;
-const pointSize = 3;
 let planeID;
 
 let methode = "bernstein";

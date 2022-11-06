@@ -4,6 +4,7 @@
 
 const _plane = new THREE.Plane();
 const _raycaster = new THREE.Raycaster();
+_raycaster.params.Points.threshold = 0.15;
 
 const _pointer = new THREE.Vector2();
 const _offset = new THREE.Vector3();
