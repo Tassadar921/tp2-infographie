@@ -1,10 +1,10 @@
+const material = new THREE.LineBasicMaterial({color: randomColor()});
+const material2 = new THREE.LineBasicMaterial({color: randomColor()});
+const materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
+
 function chargeDraw(pointsControle, methode) {
     let geometry;
     let drawing;
-
-    const material = new THREE.LineBasicMaterial({color: randomColor()});
-    const material2 = new THREE.LineBasicMaterial({color: randomColor()});
-    const materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
 
     let points = new Array;
 

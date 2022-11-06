@@ -29,6 +29,9 @@ document.getElementById("decasteljau").addEventListener("click",(event)=>{
 });
 
 document.getElementById("refresh").addEventListener("click",(event)=>{
+    material = new THREE.LineBasicMaterial({color: randomColor()});
+    material2 = new THREE.LineBasicMaterial({color: randomColor()});
+    materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
     clear();
     for(let i = 0; i < nbCourbes; i++){
         if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
