@@ -13,12 +13,14 @@ let tabPointsControle = initialisationCourbes();
 
 let nbCourbes = 3;
 let planeID;
+let draggedPointID = 0;
 
 let methode = "bernstein";
 clear();
 
 miseAJour(chargeDraw(tabPointsControle[0], methode));
 initPointer();
+initializationDragging();
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;

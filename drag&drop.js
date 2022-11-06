@@ -3,10 +3,11 @@ const pointer = {
     y: 0,
 };
 
-const objectCooBeforeDrag = {
-    x: 0,
-    y: 0,
-};
+const objectCooBeforeDrag = new THREE.Vector3(
+    0,
+    0,
+    0,
+);
 
 initPointer = () => {
     renderer.domElement.addEventListener('pointermove', (e) => {
@@ -21,17 +22,29 @@ initializationDragging = () => {
     const draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
 
     draggable.addEventListener('dragstart', (e) => {
-        objectCooBeforeDrag.x = e.object.position.x;
-        objectCooBeforeDrag.y = e.object.position.y;
+        objectCooBeforeDrag.x = e.object.geometry.attributes.position.array[0];
+        objectCooBeforeDrag.y = e.object.geometry.attributes.position.array[1];
+        for (let i = 0; i < tabPointsControle[0].length; i++) {
+            if (tabPointsControle[0][i].equals(objectCooBeforeDrag)) {
+                draggedPointID = i;
+                i = tabPointsControle[0].length;
+            }
+        }
     });
 
     draggable.addEventListener('drag', (e) => {
-        console.log(e);
-        const raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(pointer, camera);
+        console.log(e.object);
+        var position = new THREE.Vector3();
+        position.setFromMatrixPosition(e.object.matrixWorld);
+        console.log(position);
+        tabPointsControle[0][draggedPointID].x = objectCooBeforeDrag.x+position.x;
+        tabPointsControle[0][draggedPointID].y = objectCooBeforeDrag.y+position.y;
+        miseAJour(chargeDraw(tabPointsControle[0], methode));
+        renderer.render(scene, camera);
+    });
 
-        const intersects = raycaster.intersectObjects(scene.getObjectById(planeID).children);
-        console.log(intersects);
+    draggable.addEventListener('dragend', (e) => {
+        console.log(tabPointsControle[0]);
         renderer.render(scene, camera);
     });
 };

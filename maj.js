@@ -38,7 +38,6 @@ function chargeDraw(pointsControle, methode) {
         drawing = new THREE.Points(geometry, materialPoints);
         scene.getObjectById(planeID).add(drawing);
     }
-    initializationDragging();
 
     geometry = new THREE.BufferGeometry().setFromPoints(points);  // on affiche les points
     drawing = new THREE.Line(geometry, material); // on relie les points grace à .Line de façon à dessiner la courbe paramétrique
