@@ -14,9 +14,11 @@ let tabPointsControle = initialisationCourbes();
 let nbCourbes = 3;
 let planeID;
 let draggedPointID = 0;
+let nbPoints = 4;
 
 let methode = "bernstein";
-clear();
+
+scene.add(configPlane());
 
 miseAJour(chargeDraw(tabPointsControle[0], methode));
 initPointer();

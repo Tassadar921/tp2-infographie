@@ -54,8 +54,13 @@ function miseAJour(drawings) {
 }
 
 function clear() {
-    scene = new THREE.Scene();
-    scene.add(configPlane());
+    console.log('==============================================');
+    for(const child of scene.children){
+        if(child.geometry.type==='PlaneGeometry') {
+            scene.children = [child];
+            break;
+        }
+    }
     renderer.render(scene, camera); // on fait le rendu
 }
 

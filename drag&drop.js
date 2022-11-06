@@ -33,18 +33,16 @@ initializationDragging = () => {
     });
 
     draggable.addEventListener('drag', (e) => {
-        console.log(e.object);
-        var position = new THREE.Vector3();
+        const position = new THREE.Vector3();
         position.setFromMatrixPosition(e.object.matrixWorld);
-        console.log(position);
         tabPointsControle[0][draggedPointID].x = objectCooBeforeDrag.x+position.x;
         tabPointsControle[0][draggedPointID].y = objectCooBeforeDrag.y+position.y;
-        miseAJour(chargeDraw(tabPointsControle[0], methode));
         renderer.render(scene, camera);
+        clear();
+        miseAJour(chargeDraw(tabPointsControle[0], methode));
     });
 
     draggable.addEventListener('dragend', (e) => {
-        console.log(tabPointsControle[0]);
         renderer.render(scene, camera);
     });
 };
