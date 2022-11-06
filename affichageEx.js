@@ -6,6 +6,19 @@ function eventListenerAffichagePoint(id){
     });
 }
 
+refresh = (checked) => {
+    material = new THREE.LineBasicMaterial({color: randomColor()});
+    material2 = new THREE.LineBasicMaterial({color: randomColor()});
+    materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
+    scene = new THREE.Scene();
+    scene.add(configPlane());
+    scene.getObjectById(planeID).children = [];
+    if(checked) {
+        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+        initializationDragging();
+    }
+};
+
 document.getElementById("bernstein").style = "background-color: lightgrey;";
 
 document.getElementById("bernstein").addEventListener("click",(event)=>{
@@ -16,6 +29,7 @@ document.getElementById("bernstein").addEventListener("click",(event)=>{
     }
     document.getElementById("bernstein").style = "background-color: lightgrey;";
     document.getElementById("decasteljau").style = "";
+    refresh(true);
 });
 
 document.getElementById("decasteljau").addEventListener("click",(event)=>{
@@ -26,16 +40,7 @@ document.getElementById("decasteljau").addEventListener("click",(event)=>{
     }
     document.getElementById("bernstein").style = "";
     document.getElementById("decasteljau").style = "background-color: lightgrey;";
-});
-
-document.getElementById("refresh").addEventListener("click",(event)=>{
-    material = new THREE.LineBasicMaterial({color: randomColor()});
-    material2 = new THREE.LineBasicMaterial({color: randomColor()});
-    materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
-    clear();
-    for(let i = 0; i < nbCourbes; i++){
-        if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
-    }
+    refresh(true);
 });
 
 document.getElementById("new").addEventListener("click",(event)=>{
@@ -60,13 +65,27 @@ document.getElementById("new").addEventListener("click",(event)=>{
     eventListenerAffichagePoint("select"+nbCourbes);
 });
 
-document.getElementById("select1").addEventListener("click",(event)=>{
-    event.preventDefault();
-    console.log(document.getElementById("select4"));
+document.getElementById("courbe1").addEventListener("click",(event)=>{
+    if(document.getElementById('courbe1').checked) {
+        IDSelectedCurve = 0;
+        document.getElementById('courbe2').checked = false;
+        document.getElementById('courbe3').checked = false;
+    }
+    refresh(document.getElementById('courbe1').checked);
 });
-document.getElementById("select2").addEventListener("click",(event)=>{
-    event.preventDefault();
+document.getElementById("courbe2").addEventListener("click",(event)=>{
+    if(document.getElementById('courbe2').checked) {
+        IDSelectedCurve = 1;
+        document.getElementById('courbe1').checked = false;
+        document.getElementById('courbe3').checked = false;
+    }
+    refresh(document.getElementById('courbe2').checked);
 });
-document.getElementById("select3").addEventListener("click",(event)=>{
-    event.preventDefault();
+document.getElementById("courbe3").addEventListener("click",(event)=>{
+    if(document.getElementById('courbe3').checked) {
+        IDSelectedCurve = 2;
+        document.getElementById('courbe1').checked = false;
+        document.getElementById('courbe2').checked = false;
+    }
+    refresh(document.getElementById('courbe3').checked);
 });

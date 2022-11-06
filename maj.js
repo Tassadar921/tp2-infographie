@@ -1,7 +1,3 @@
-const material = new THREE.LineBasicMaterial({color: randomColor()});
-const material2 = new THREE.LineBasicMaterial({color: randomColor()});
-const materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
-
 function chargeDraw(pointsControle, methode) {
     let geometry;
     let drawing;
@@ -36,7 +32,9 @@ function chargeDraw(pointsControle, methode) {
         geometry = new THREE.BufferGeometry();
         geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ));
         drawing = new THREE.Points(geometry, materialPoints);
-        scene.getObjectById(planeID).add(drawing);
+        if(scene.getObjectById(planeID).children.length<nbPoints) {
+            scene.getObjectById(planeID).add(drawing);
+        }
     }
 
     geometry = new THREE.BufferGeometry().setFromPoints(points);  // on affiche les points
@@ -54,7 +52,6 @@ function miseAJour(drawings) {
 }
 
 function clear() {
-    console.log('==============================================');
     for(const child of scene.children){
         if(child.geometry.type==='PlaneGeometry') {
             scene.children = [child];

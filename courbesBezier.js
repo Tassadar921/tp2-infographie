@@ -11,9 +11,14 @@ scene.background = new THREE.Color(0, 0, 0);
 
 let tabPointsControle = initialisationCourbes();
 
+let material = new THREE.LineBasicMaterial({color: randomColor()});
+let material2 = new THREE.LineBasicMaterial({color: randomColor()});
+let materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
+
 let nbCourbes = 3;
 let planeID;
 let draggedPointID = 0;
+let IDSelectedCurve = 0;
 let nbPoints = 4;
 
 let methode = "bernstein";
@@ -26,7 +31,7 @@ initializationDragging();
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;
-    pointsControle1.push(new THREE.Vector3(-1,0,0));
+    pointsControle1.push(new THREE.Vector3(0,0,0));
     pointsControle1.push(new THREE.Vector3(0,1,0));
     pointsControle1.push(new THREE.Vector3(1,1,0));
     pointsControle1.push(new THREE.Vector3(1,0,0));
