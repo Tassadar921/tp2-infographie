@@ -1,3 +1,11 @@
+function eventListenerAffichagePoint(id){
+    document.getElementById(id).addEventListener("click",(event) => {
+        event.preventDefault();
+
+
+    });
+}
+
 document.getElementById("bernstein").style = "background-color: lightgrey;";
 
 document.getElementById("bernstein").addEventListener("click",(event)=>{
@@ -45,9 +53,8 @@ document.getElementById("new").addEventListener("click",(event)=>{
     clone2.innerHTML = "courbe " + nbCourbes;
     document.getElementById("formCheckboxes").appendChild(clone2);
 
-    document.getElementById("select"+nbCourbes).addEventListener("click",(event)=>{
-        event.preventDefault();
-    });    
+
+    eventListenerAffichagePoint("select"+nbCourbes);
 });
 
 document.getElementById("select1").addEventListener("click",(event)=>{
@@ -60,4 +67,3 @@ document.getElementById("select2").addEventListener("click",(event)=>{
 document.getElementById("select3").addEventListener("click",(event)=>{
     event.preventDefault();
 });
-
