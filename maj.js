@@ -32,7 +32,7 @@ function chargeDraw(pointsControle, methode) {
         geometry = new THREE.BufferGeometry();
         geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ));
         drawing = new THREE.Points(geometry, materialPoints);
-        if(scene.getObjectById(planeID).children.length<nbPoints) {
+        if(scene.getObjectById(planeID).children.length<pointsControle[IDSelectedCurve].length) {
             scene.getObjectById(planeID).add(drawing);
         }
     }

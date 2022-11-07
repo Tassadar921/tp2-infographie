@@ -19,7 +19,6 @@ let nbCourbes = 3;
 let planeID;
 let draggedPointID = 0;
 let IDSelectedCurve = 0;
-let nbPoints = 4;
 
 let methode = "bernstein";
 
