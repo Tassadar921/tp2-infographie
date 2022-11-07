@@ -4,7 +4,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 1000);
 let scene = new THREE.Scene();
-camera.position.set( 0, 0, 10 );
+camera.position.set( 0, 0, 5 );
 camera.lookAt( 0, 0, 0 );
 
 scene.background = new THREE.Color(0, 0, 0);
@@ -24,7 +24,7 @@ let methode = "bernstein";
 
 scene.add(configPlane());
 
-miseAJour(chargeDraw(tabPointsControle[0], methode));
+miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 initPointer();
 initializationDragging();
 
