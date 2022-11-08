@@ -17,13 +17,19 @@ initPointer = () => {
     });
 };
 
-initializationDragging = () => {
+initializationDragging = (first) => {
     const position = new THREE.Vector3();
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera( pointer, camera );
-    const draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
+    let draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
+    if(!first){
+        draggable.deactivate();
+        draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
+    }
+    console.log(tabPointsControle);
 
     draggable.addEventListener('dragstart', (e) => {
+        document.getElementById('bin').style.display="block";
         objectCooBeforeDrag.x = tabPointsControle[IDSelectedCurve][e.object.userData.id].x;
         objectCooBeforeDrag.y = tabPointsControle[IDSelectedCurve][e.object.userData.id].y;
     });
@@ -37,6 +43,7 @@ initializationDragging = () => {
     });
 
     draggable.addEventListener('dragend', (e) => {
+        document.getElementById('bin').style.display="none";
         renderer.render(scene, camera);
     });
 };

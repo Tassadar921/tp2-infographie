@@ -12,11 +12,11 @@ refresh = (checked) => {
     materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15});
     scene = new THREE.Scene();
     scene.add(configPlane());
-    scene.getObjectById(planeID).children = [];
     renderer.render(scene, camera);
     if(checked) {
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-        initializationDragging();
+        initPointer();
+        initializationDragging(false);
     }
     majAffichagePoints()
 };
