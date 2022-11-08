@@ -2,7 +2,7 @@ function setupAffichagePoints() {
     let newUl = document.createElement('ul');
     newUl.setAttribute('id', 'newUl');
     newUl.style = 'padding: 10px;';
-    newUl.innerHTML += '<p> Courbe n°' + (IDSelectedCurve + 1) + '</p>';
+    newUl.innerHTML = '<p id="nomCourbe"> Courbe n°' + (IDSelectedCurve + 1) + '</p>';
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         newUl.appendChild(createNewLi(i));
     }
@@ -57,6 +57,25 @@ function createArrowsButtonEvents(way, id) {
     });
 }
 
+function createDeleteButtonEvents(id){
+    document.getElementById('delete'+id).addEventListener("click", (event)=>{
+        if(tabPointsControle[IDSelectedCurve].length > 3){
+            event.preventDefault;
+            tabPointsControle[IDSelectedCurve].splice(id,1);
+    
+            document.getElementById("li"+id).remove();
+    
+            scene.getObjectById(planeID).children = [];
+            majAffichagePoints();
+            clear();
+            miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+            initializationDragging(false);    
+        } else {
+            alert("Il n'y a pas assez de point pour en suprimer");
+        }
+    })
+}
+
 function initEventListenersAffichagePoints() {
     document.getElementById('sauvegarderButton').addEventListener('click', (event) => {
         event.preventDefault();
@@ -90,11 +109,13 @@ function initEventListenersAffichagePoints() {
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         createArrowsButtonEvents('Up', i);
         createArrowsButtonEvents('Down', i);
+        createDeleteButtonEvents(i);
     }
 }
 
 function createNewLi(id) {
     let newLi = document.createElement('li');
+    newLi.setAttribute("id","li"+id);
     let letters = ['x', 'y'];
     for (let j = 0; j < letters.length; j++) {
         newLi.innerHTML += letters[j] + ' : ';
@@ -109,7 +130,7 @@ function createNewLi(id) {
     }
     newLi.innerHTML += '<button id="arrowUp' + id + '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/></svg></button>';
     newLi.innerHTML += '<button id="arrowDown' + id + '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/></svg></button>';
-
+    newLi.innerHTML += '<button id="delete' + id + '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>'
     return newLi;
 }
 
@@ -122,6 +143,7 @@ function createNewButton(name) {
 }
 
 function majAffichagePoints() {
+    document.getElementById("nomCourbe").innerHTML = 'Courbe n°' + (IDSelectedCurve + 1);
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {
