@@ -56,6 +56,7 @@ function initEventListenersAffichagePoints() {
             tabPointsControle[IDSelectedCurve][i].x = document.getElementById('x' + i).value;
             tabPointsControle[IDSelectedCurve][i].y = document.getElementById('y' + i).value;
         }
+        scene.getObjectById(planeID).children = [];
         majAffichagePoints();
         clear();
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
