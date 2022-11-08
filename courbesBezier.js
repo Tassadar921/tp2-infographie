@@ -27,7 +27,7 @@ miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 let draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
 initializationDragging(true);
 setupAffichagePoints();
-document.getElementById('courbe1').checked = true;
+unCheckAll(1);
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;

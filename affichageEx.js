@@ -1,9 +1,24 @@
 function eventListenerAffichagePoint(id){
-    document.getElementById(id).addEventListener("click",(event) => {
-        event.preventDefault();
-
-
+    document.getElementById("courbe"+id).addEventListener("click",(event) => {
+        if(document.getElementById('courbe'+id).checked) {
+            IDSelectedCurve = id-1;
+            unCheckAll(id);
+        }
+        refresh(document.getElementById('courbe'+id).checked);
     });
+}
+
+function unCheckAll(id) {
+    for(let i = 1; i <= tabPointsControle.length; i++) {
+        if(i != id) {
+            console.log("uncheck"+i);
+            document.getElementById('courbe'+i).checked = false;
+        }
+        else {
+            console.log("check"+i);
+            document.getElementById('courbe'+i).checked = true;
+        }
+    }
 }
 
 refresh = (checked) => {
@@ -48,6 +63,9 @@ document.getElementById("new").addEventListener("click",(event)=>{
     nbCourbes++;
         
     let tmp = new Array;
+    tmp.push(new THREE.Vector3(0,0,0));
+    tmp.push(new THREE.Vector3(0,1,0));
+    tmp.push(new THREE.Vector3(1,1,0));
     tabPointsControle.push(tmp)
 
     let clone1 = document.getElementById("courbe1").cloneNode();
@@ -63,30 +81,32 @@ document.getElementById("new").addEventListener("click",(event)=>{
     document.getElementById("formCheckboxes").appendChild(clone2);
 
 
-    eventListenerAffichagePoint("select"+nbCourbes);
+    eventListenerAffichagePoint((nbCourbes));
+
+    IDSelectedCurve = nbCourbes-1;
+
+    unCheckAll(nbCourbes);
+    refresh(document.getElementById('courbe'+nbCourbes).checked);
 });
 
 document.getElementById("courbe1").addEventListener("click",(event)=>{
     if(document.getElementById('courbe1').checked) {
         IDSelectedCurve = 0;
-        document.getElementById('courbe2').checked = false;
-        document.getElementById('courbe3').checked = false;
+        unCheckAll(1);
     }
     refresh(document.getElementById('courbe1').checked);
 });
 document.getElementById("courbe2").addEventListener("click",(event)=>{
     if(document.getElementById('courbe2').checked) {
         IDSelectedCurve = 1;
-        document.getElementById('courbe1').checked = false;
-        document.getElementById('courbe3').checked = false;
+        unCheckAll(2);
     }
     refresh(document.getElementById('courbe2').checked);
 });
 document.getElementById("courbe3").addEventListener("click",(event)=>{
     if(document.getElementById('courbe3').checked) {
         IDSelectedCurve = 2;
-        document.getElementById('courbe1').checked = false;
-        document.getElementById('courbe2').checked = false;
+        unCheckAll(3);
     }
     refresh(document.getElementById('courbe3').checked);
 });
