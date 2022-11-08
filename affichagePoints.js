@@ -35,8 +35,6 @@ function majAffichagePoints() {
             tabPointsControle[IDSelectedCurve][i].x = document.getElementById("x"+i).value;
             tabPointsControle[IDSelectedCurve][i].y = document.getElementById("y"+i).value;
         }
-        scene.getObjectById(planeID).children = [];
-        clear();
-        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+        refresh(true);
     });
 }
