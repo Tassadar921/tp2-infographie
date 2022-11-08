@@ -19,34 +19,22 @@ initializationDragging = (first) => {
     }
 
     draggable.addEventListener('dragstart', (e) => {
-        dragStart(e);
-    });
-
-    draggable.addEventListener('drag', (e) => {
-        drag(e);
-    });
-
-    draggable.addEventListener('dragend', (e) => {
-        dragEnd(e);
-    });
-
-    let dragStart = (e) => {
         document.getElementById('bin').style.display="block";
         objectCooBeforeDrag.x = tabPointsControle[IDSelectedCurve][e.object.userData.id].x;
         objectCooBeforeDrag.y = tabPointsControle[IDSelectedCurve][e.object.userData.id].y;
-    };
+    });
 
-    let drag = (e) => {
+    draggable.addEventListener('drag', (e) => {
         position.setFromMatrixPosition(e.object.matrixWorld);
         tabPointsControle[IDSelectedCurve][e.object.userData.id].x = e.object.geometry.attributes.position.array[0] + position.x;
         tabPointsControle[IDSelectedCurve][e.object.userData.id].y = e.object.geometry.attributes.position.array[1] + position.y;
         majAffichagePoints();
         clear();
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-    };
+    });
 
-    let dragEnd = (e) => {
+    draggable.addEventListener('dragend', (e) => {
         document.getElementById('bin').style.display="none";
         renderer.render(scene, camera);
-    };
+    });
 };
