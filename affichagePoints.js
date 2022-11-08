@@ -30,7 +30,11 @@ function createArrowsButtonEvents(way, id) {
                     tabPointsControle[IDSelectedCurve][id - 1].y = tabPointsControle[IDSelectedCurve][id].y;
                     tabPointsControle[IDSelectedCurve][id].y = tmp;
                 }
+                scene.getObjectById(planeID).children = [];
                 majAffichagePoints();
+                clear();
+                miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+                initializationDragging(false);
                 break;
 
             case 'Down':
@@ -43,7 +47,11 @@ function createArrowsButtonEvents(way, id) {
                     tabPointsControle[IDSelectedCurve][id + 1].y = tabPointsControle[IDSelectedCurve][id].y;
                     tabPointsControle[IDSelectedCurve][id].y = tmp;
                 }
+                scene.getObjectById(planeID).children = [];
                 majAffichagePoints();
+                clear();
+                miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+                initializationDragging(false);
                 break;
         }
     });
