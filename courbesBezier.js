@@ -26,7 +26,7 @@ scene.add(configPlane());
 miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 initPointer();
 initializationDragging(true);
-majAffichagePoints()
+setupAffichagePoints()
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;
