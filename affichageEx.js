@@ -110,3 +110,19 @@ document.getElementById("courbe3").addEventListener("click",(event)=>{
     }
     refresh(document.getElementById('courbe3').checked);
 });
+
+document.getElementById("curseurX").addEventListener("change",(event)=>{
+    transX = document.getElementById("curseurX").value;
+    tabPointsControle[IDSelectedCurve] = translation("x",transX, tabPointsControle[IDSelectedCurve]);
+    refresh(true);
+});
+document.getElementById("curseurY").addEventListener("change",(event)=>{
+    transY = document.getElementById("curseurY").value;
+    tabPointsControle[IDSelectedCurve] = translation("y",transY, tabPointsControle[IDSelectedCurve]);
+    refresh(true);
+});
+document.getElementById("curseurRot").addEventListener("change",(event)=>{
+    angle = Math.PI * (document.getElementById("curseurRot").value);
+    tabPointsControle[IDSelectedCurve] = rotation(angle, tabPointsControle[IDSelectedCurve]);
+    refresh(true);
+});

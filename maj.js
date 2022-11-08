@@ -4,10 +4,6 @@ function chargeDraw(pointsControle, methode, addingPoint = false) {
 
     let points = new Array;
 
-    pointsControle = translation("x",transX, pointsControle);
-    pointsControle = translation("y",transY, pointsControle);
-    pointsControle = rotation(angle, pointsControle);
-
     switch (methode) {
         case 'bernstein':
             points = createBerstein(pointsControle);
