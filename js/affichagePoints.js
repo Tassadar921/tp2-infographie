@@ -76,6 +76,7 @@ let deletePoint = (id) => {
         document.getElementById("li"+id).remove();
 
         //on update threeJS, qui prendra en compte qu'un point a été supprimé
+        setupAffichagePoints();
         updateAfterMovementInTabPointsControle();
     } else {//on ne peut pas avoir moins de 3 points de contrôle
         alert("Il n'y a pas assez de point pour en suprimer");
@@ -149,6 +150,7 @@ function majAffichagePoints() {
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {
+            console.log(i);
             document.getElementById(letters[j] + i).value = tabPointsControle[IDSelectedCurve][i].getComponent(j);
         }
     }
