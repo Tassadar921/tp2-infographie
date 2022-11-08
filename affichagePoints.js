@@ -14,13 +14,30 @@ function majAffichagePoints() {
             newInput.style = "width : 30px;";
             newInput.setAttribute("type", "text");
             newInput.setAttribute("name", letters[j] + IDSelectedCurve);
-            newInput.setAttribute("id", letters[j] + IDSelectedCurve);
+            newInput.setAttribute("id", letters[j] + i);
             newInput.setAttribute("value", tabPointsControle[IDSelectedCurve][i].getComponent(j));
             newLi.appendChild(newInput)
         }    
         newUl.appendChild(newLi);
     }
-    
+    let newButton = document.createElement("button");
+    newButton.setAttribute("id","saveButton");
+    newButton.innerHTML="Sauvegarder";
+    newUl.appendChild(newButton);
+
     document.getElementById("points").innerHTML = "";
     document.getElementById("points").appendChild(newUl);
+
+
+    document.getElementById("saveButton").addEventListener("click", (event)=>{
+        event.preventDefault();
+        for(let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
+            console.log("x"+i);
+            tabPointsControle[IDSelectedCurve][i].x = document.getElementById("x"+i).value;
+            tabPointsControle[IDSelectedCurve][i].y = document.getElementById("y"+i).value;
+        }
+    
+        clear();
+        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+    });
 }
