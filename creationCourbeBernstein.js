@@ -2,7 +2,7 @@ function Bernstein(n, i, t) {
     return (fact(n)/(fact(i)*fact(n-i)))*Math.pow(t,i)*Math.pow((1-t), n-i);
 }
 
-function createBerstein(pointsControle) {
+function createBernstein(pointsControle) {
     let x = 0;                         
     let y = 0;
     let taille = pointsControle.length;

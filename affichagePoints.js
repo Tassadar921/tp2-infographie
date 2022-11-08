@@ -17,6 +17,16 @@ function setupAffichagePoints() {
     initEventListenersAffichagePoints();
 }
 
+//trigger après une permutation de points, un update de coordonnées à la main ou un delete de points
+let updateAfterMovementInTabPointsControle = () => {
+    //clear des enfants du plan (les points draggable)
+    scene.getObjectById(planeID).children = [];
+    //pour les fonctions suivantes, aller voir leur définition, tout y est décrit
+    majAffichagePoints();
+    majGraphique();
+    initializationDragging(false);
+};
+
 function createArrowsButtonEvents(way, id) {
     document.getElementById('arrow' + way + id).addEventListener('click', (event) => {
         event.preventDefault();
@@ -31,11 +41,7 @@ function createArrowsButtonEvents(way, id) {
                     tabPointsControle[IDSelectedCurve][id - 1].y = tabPointsControle[IDSelectedCurve][id].y;
                     tabPointsControle[IDSelectedCurve][id].y = tmp;
                 }
-                scene.getObjectById(planeID).children = [];
-                majAffichagePoints();
-                clear();
-                miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-                initializationDragging(false);
+                updateAfterMovementInTabPointsControle();
                 break;
 
             case 'Down':
@@ -48,33 +54,32 @@ function createArrowsButtonEvents(way, id) {
                     tabPointsControle[IDSelectedCurve][id + 1].y = tabPointsControle[IDSelectedCurve][id].y;
                     tabPointsControle[IDSelectedCurve][id].y = tmp;
                 }
-                scene.getObjectById(planeID).children = [];
-                majAffichagePoints();
-                clear();
-                miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-                initializationDragging(false);
+                updateAfterMovementInTabPointsControle();
                 break;
         }
     });
 }
 
 function createDeleteButtonEvents(id){
-    document.getElementById('delete'+id).addEventListener("click", (event)=>{
-        if(tabPointsControle[IDSelectedCurve].length > 3){
-            event.preventDefault;
-            tabPointsControle[IDSelectedCurve].splice(id,1);
-    
-            document.getElementById("li"+id).remove();
-    
-            scene.getObjectById(planeID).children = [];
-            setupAffichagePoints();
-            clear();
-            miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-            initializationDragging(false);    
-        } else {
-            alert("Il n'y a pas assez de point pour en suprimer");
-        }
+    document.getElementById('delete'+id).addEventListener("click", () => {
+        deletePoint(id);
     })
+}
+
+//fonction qui delete le point de contrôle tabPointsControle[IDSelectedCurve][id]
+let deletePoint = (id) => {
+    if(tabPointsControle[IDSelectedCurve].length > 3){
+        //on delete le point du côté data
+        tabPointsControle[IDSelectedCurve].splice(id,1);
+
+        //on delete le point dans le panneau de contrôle des points
+        document.getElementById("li"+id).remove();
+
+        //on update threeJS, qui prendra en compte qu'un point a été supprimé
+        updateAfterMovementInTabPointsControle();
+    } else {//on ne peut pas avoir moins de 3 points de contrôle
+        alert("Il n'y a pas assez de point pour en suprimer");
+    }
 }
 
 function initEventListenersAffichagePoints() {
@@ -84,11 +89,7 @@ function initEventListenersAffichagePoints() {
             tabPointsControle[IDSelectedCurve][i].x = document.getElementById('x' + i).value;
             tabPointsControle[IDSelectedCurve][i].y = document.getElementById('y' + i).value;
         }
-        scene.getObjectById(planeID).children = [];
-        majAffichagePoints();
-        clear();
-        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-        initializationDragging(false);
+        updateAfterMovementInTabPointsControle();
     });
 
     document.getElementById('ajouterButton').addEventListener('click', (event) => {
@@ -104,8 +105,7 @@ function initEventListenersAffichagePoints() {
         createDeleteButtonEvents(id);
 
         majAffichagePoints();
-        clear();
-        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode, true));
+        majGraphique(true);
     });
 
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
