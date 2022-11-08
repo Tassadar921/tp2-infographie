@@ -2,6 +2,9 @@
 //elle n'était pas dans la lib fournie avec le TP donc on l'a ajoutée ici, et légèrement modifiée pour la rendre
 //compatible avec le fichier three.js qui est une version modifiée de la lib officielle
 
+//on a également réduit le rayon du raycaster de la classe, qui était trop large pour ce qu'on voulait faire
+//(les points draggable avaient une hitbox beauuucoup trop large qui se superposait avec les autres, un enfer)
+
 const _plane = new THREE.Plane();
 const _raycaster = new THREE.Raycaster();
 _raycaster.params.Points.threshold = 0.15;
