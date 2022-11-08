@@ -152,6 +152,9 @@ function majAffichagePoints() { // cette fonction met à jour les points de cont
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {  // pour chaque lettre(coordonnées) ( x et y)
             document.getElementById(letters[j] + i).value = tabPointsControle[IDSelectedCurve][i].getComponent(j);  // on met à jour le champs de chaque coordonnées en mettant les nouvelles coordonnées du point de controle
+            for (let j = 0; j < letters.length; j++) {
+                document.getElementById(letters[j] + i).value = tabPointsControle[IDSelectedCurve][i].getComponent(j);
+            }
         }
     }
 }

@@ -11,11 +11,8 @@ function eventListenerAffichagePoint(id){
 function unCheckAll(id) {
     for(let i = 1; i <= tabPointsControle.length; i++) {
         if(i != id) {
-            console.log("uncheck"+i);
             document.getElementById('courbe'+i).checked = false;
-        }
-        else {
-            console.log("check"+i);
+        } else {
             document.getElementById('courbe'+i).checked = true;
         }
     }
@@ -38,7 +35,7 @@ refresh = (checked) => {
 document.getElementById("bernstein").style = "background-color: lightgrey;";
 
 document.getElementById("bernstein").addEventListener("click",(event)=>{
-    clear();
+    clearSceneChildren();
     methode = "bernstein";
     for(let i = 0; i < nbCourbes; i++){
         if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
@@ -49,7 +46,7 @@ document.getElementById("bernstein").addEventListener("click",(event)=>{
 });
 
 document.getElementById("decasteljau").addEventListener("click",(event)=>{
-    clear();
+    clearSceneChildren();
     methode = "decasteljau";
     for(let i = 0; i < nbCourbes; i++){
         if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));
