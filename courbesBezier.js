@@ -19,6 +19,10 @@ let nbCourbes = 3;
 let planeID;
 let IDSelectedCurve = 0;
 
+let angle = 0;
+let transX = 0;
+let transY = 0;
+
 let methode = "bernstein";
 
 scene.add(configPlane());
