@@ -145,7 +145,6 @@ function createNewButton(name) {
 
 function majAffichagePoints() {
     document.getElementById("nomCourbe").innerHTML = 'Courbe n°' + (IDSelectedCurve + 1);
-    console.log(tabPointsControle[IDSelectedCurve])
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {
