@@ -56,10 +56,9 @@ function initEventListenersAffichagePoints() {
             tabPointsControle[IDSelectedCurve][i].x = document.getElementById('x' + i).value;
             tabPointsControle[IDSelectedCurve][i].y = document.getElementById('y' + i).value;
         }
-        scene = new THREE.Scene();
-        scene.add(configPlane());
-        renderer.render(scene, camera);
         majAffichagePoints();
+        clear();
+        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
         initializationDragging(false);
     });
 
@@ -75,6 +74,8 @@ function initEventListenersAffichagePoints() {
         createArrowsButtonEvents('Down', id);
 
         majAffichagePoints();
+        clear();
+        miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode, true));
     });
 
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
@@ -118,6 +119,4 @@ function majAffichagePoints() {
             document.getElementById(letters[j] + i).setAttribute('value', tabPointsControle[IDSelectedCurve][i].getComponent(j));
         }
     }
-    clear();
-    miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 }

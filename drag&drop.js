@@ -18,7 +18,7 @@ initializationDragging = (first) => {
         draggable.deactivate();
         draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
     }
-    console.log(tabPointsControle);
+    // console.log(tabPointsControle);
 
     draggable.addEventListener('dragstart', (e) => {
         document.getElementById('bin').style.display="block";

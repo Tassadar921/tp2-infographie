@@ -1,16 +1,16 @@
-function chargeDraw(pointsControle, methode) {
+function chargeDraw(pointsControle, methode, addingPoint = false) {
     let geometry;
     let drawing;
 
     let points = new Array;
 
     switch (methode) {
-        case "bernstein":
+        case 'bernstein':
             points = createBerstein(pointsControle);
-            break
-        case "decasteljau":
+            break;
+        case 'decasteljau':
             points = createDecastlejau(pointsControle);
-            break
+            break;
     }
 
     let drawings = [];
@@ -19,20 +19,22 @@ function chargeDraw(pointsControle, methode) {
     drawing = new THREE.Line(geometry, material2); // on relie les points grace à .Line de façon à dessiner la courbe paramétrique
     drawings.push(drawing); // on ajoute le dessin dans la scène
 
-    for ( let i = 0; i < pointsControle.length; i ++ ) {
-    
-        const vertices = [];
+    for (let i = 0; i < pointsControle.length; i++) {
 
-        const x = pointsControle[i].x;
-        const y = pointsControle[i].y;
-        const z = 0;
+        if ((scene.getObjectById(planeID).children.length < pointsControle.length && !addingPoint) || (addingPoint && i===pointsControle.length-1)) {
 
-        vertices.push( x, y, z );
+            const vertices = [];
 
-        geometry = new THREE.BufferGeometry();
-        geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ));
-        drawing = new THREE.Points(geometry, materialPoints);
-        if(scene.getObjectById(planeID).children.length<pointsControle.length) {
+            const x = pointsControle[i].x;
+            const y = pointsControle[i].y;
+            const z = 0;
+
+            vertices.push(x, y, z);
+
+            geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            drawing = new THREE.Points(geometry, materialPoints);
+
             drawing.userData = {id: scene.getObjectById(planeID).children.length};
             scene.getObjectById(planeID).add(drawing);
         }
@@ -47,14 +49,14 @@ function chargeDraw(pointsControle, methode) {
 
 function miseAJour(drawings) {
     drawings.forEach(element => {
-        scene.add(element);        
+        scene.add(element);
     });
     renderer.render(scene, camera); // on fait le rendu
 }
 
 function clear() {
-    for(const child of scene.children){
-        if(child.geometry.type==='PlaneGeometry') {
+    for (const child of scene.children) {
+        if (child.geometry.type === 'PlaneGeometry') {
             scene.children = [child];
             break;
         }
@@ -75,5 +77,5 @@ configPlane = () => {
 };
 
 function randomColor() {
-    return parseInt('0x' + (('00000'+(Math.random()*(1<<24)|0).toString(16).toUpperCase()).slice(-6)));
+    return parseInt('0x' + (('00000' + (Math.random() * (1 << 24) | 0).toString(16).toUpperCase()).slice(-6)));
 }
