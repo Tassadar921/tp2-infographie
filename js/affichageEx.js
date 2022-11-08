@@ -11,11 +11,8 @@ function eventListenerAffichagePoint(id){//fonction de création des eventsliste
 function unCheckAll(id) {//décoche toutes les courbes sauf celle passé en paramètre
     for(let i = 1; i <= tabPointsControle.length; i++) {
         if(i != id) {
-            console.log("uncheck"+i);
             document.getElementById('courbe'+i).checked = false;
-        }
-        else {
-            console.log("check"+i);
+        } else {
             document.getElementById('courbe'+i).checked = true;
         }
     }
@@ -38,7 +35,7 @@ refresh = (checked) => {//met à jour l'affichage et si ui ou non une courbe est
 document.getElementById("bernstein").style = "background-color: lightgrey;";//courbe bernstein de base grisé
 
 document.getElementById("bernstein").addEventListener("click",(event)=>{//si on utilise la méthode de berntein
-    clear();//remise à zero
+    clearSceneChildren();//remise à zero
     methode = "bernstein";//utilisation de la méthode de bernstein
     for(let i = 0; i < nbCourbes; i++){
         if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));//met à jour la courbe à dessiner
@@ -49,7 +46,7 @@ document.getElementById("bernstein").addEventListener("click",(event)=>{//si on 
 });
 
 document.getElementById("decasteljau").addEventListener("click",(event)=>{
-    clear();//remise à zero
+    clearSceneChildren();//remise à zero
     methode = "decasteljau";//utilisation de la méthode de decasteljau
     for(let i = 0; i < nbCourbes; i++){
         if(document.getElementById("courbe"+(i+1)).checked) miseAJour(chargeDraw(tabPointsControle[i], methode));//met à jour la courbe à dessiner
