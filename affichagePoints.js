@@ -116,7 +116,7 @@ function majAffichagePoints() {
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {
-            document.getElementById(letters[j] + i).setAttribute('value', tabPointsControle[IDSelectedCurve][i].getComponent(j));
+            document.getElementById(letters[j] + i).value = tabPointsControle[IDSelectedCurve][i].getComponent(j);
         }
     }
 }
