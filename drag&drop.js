@@ -13,30 +13,40 @@ initializationDragging = (first) => {
     const position = new THREE.Vector3();
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera( pointer, camera );
-    let draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
     if(!first){
         draggable.deactivate();
         draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
     }
-    // console.log(tabPointsControle);
 
     draggable.addEventListener('dragstart', (e) => {
-        document.getElementById('bin').style.display="block";
-        objectCooBeforeDrag.x = tabPointsControle[IDSelectedCurve][e.object.userData.id].x;
-        objectCooBeforeDrag.y = tabPointsControle[IDSelectedCurve][e.object.userData.id].y;
+        dragStart(e);
     });
 
     draggable.addEventListener('drag', (e) => {
+        drag(e);
+    });
+
+    draggable.addEventListener('dragend', (e) => {
+        dragEnd(e);
+    });
+
+    let dragStart = (e) => {
+        document.getElementById('bin').style.display="block";
+        objectCooBeforeDrag.x = tabPointsControle[IDSelectedCurve][e.object.userData.id].x;
+        objectCooBeforeDrag.y = tabPointsControle[IDSelectedCurve][e.object.userData.id].y;
+    };
+
+    let drag = (e) => {
         position.setFromMatrixPosition(e.object.matrixWorld);
         tabPointsControle[IDSelectedCurve][e.object.userData.id].x = e.object.geometry.attributes.position.array[0] + position.x;
         tabPointsControle[IDSelectedCurve][e.object.userData.id].y = e.object.geometry.attributes.position.array[1] + position.y;
         majAffichagePoints();
         clear();
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-    });
+    };
 
-    draggable.addEventListener('dragend', (e) => {
+    let dragEnd = (e) => {
         document.getElementById('bin').style.display="none";
         renderer.render(scene, camera);
-    });
+    };
 };
