@@ -21,7 +21,11 @@ function setupAffichagePoints() {
                 tabPointsControle[IDSelectedCurve][i].x = document.getElementById("x"+i).value;
                 tabPointsControle[IDSelectedCurve][i].y = document.getElementById("y"+i).value;
             }
+            scene = new THREE.Scene();
+            scene.add(configPlane());
+            renderer.render(scene, camera);
             majAffichagePoints();
+            initializationDragging(false);
         });
     
         document.getElementById("ajouterButton").addEventListener("click", (event)=>{
@@ -114,8 +118,5 @@ function majAffichagePoints() {
         }    
     }
     
-    scene = new THREE.Scene();
-    scene.add(configPlane());
-    renderer.render(scene, camera);
     miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 }
