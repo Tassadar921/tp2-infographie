@@ -25,7 +25,8 @@ scene.add(configPlane());
 
 miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
 initializationDragging(true);
-setupAffichagePoints()
+setupAffichagePoints();
+document.getElementById('courbe1').checked = true;
 
 function initialisationCourbes() {
     let pointsControle1 = new Array;
