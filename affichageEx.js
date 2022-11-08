@@ -15,7 +15,6 @@ refresh = (checked) => {
     renderer.render(scene, camera);
     if(checked) {
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-        initPointer();
         initializationDragging(false);
     }
     majAffichagePoints()

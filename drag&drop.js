@@ -9,14 +9,6 @@ const objectCooBeforeDrag = new THREE.Vector3(
     0,
 );
 
-initPointer = () => {
-    renderer.domElement.addEventListener('pointermove', (e) => {
-        //normalized coo of pointer
-        pointer.x = (e.clientX / renderer.domElement.width) * 2 - 1;
-        pointer.y = -(e.clientY / renderer.domElement.height) * 2 + 1;
-    });
-};
-
 initializationDragging = (first) => {
     const position = new THREE.Vector3();
     const raycaster = new THREE.Raycaster();

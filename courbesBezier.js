@@ -24,7 +24,6 @@ let methode = "bernstein";
 scene.add(configPlane());
 
 miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-initPointer();
 initializationDragging(true);
 setupAffichagePoints()
 

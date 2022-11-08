@@ -32,7 +32,7 @@ function setupAffichagePoints() {
     
             document.getElementById("newUl").appendChild(createNewLi(id));
     
-            reateArrowsButtonEvents("up",id);
+            createArrowsButtonEvents("up",id);
             createArrowsButtonEvents("Down",id);
     
             majAffichagePoints();
@@ -118,6 +118,5 @@ function majAffichagePoints() {
     scene.add(configPlane());
     renderer.render(scene, camera);
     miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-    initPointer();
     initializationDragging(false);
 }
