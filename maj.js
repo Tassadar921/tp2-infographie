@@ -33,6 +33,7 @@ function chargeDraw(pointsControle, methode) {
         geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ));
         drawing = new THREE.Points(geometry, materialPoints);
         if(scene.getObjectById(planeID).children.length<pointsControle.length) {
+            drawing.userData = {id: scene.getObjectById(planeID).children.length};
             scene.getObjectById(planeID).add(drawing);
         }
     }

@@ -17,7 +17,6 @@ let materialPoints = new THREE.PointsMaterial({color: randomColor(), size : 0.15
 
 let nbCourbes = 3;
 let planeID;
-let draggedPointID = 0;
 let IDSelectedCurve = 0;
 
 let methode = "bernstein";
