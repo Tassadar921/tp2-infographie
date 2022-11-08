@@ -1,25 +1,25 @@
 function rotation(angle, pointsControle){
     let nbPoints = pointsControle.length;
-    for(let tmp =0; tmp < nbPoints; tmp++ ){
-        pointsControle[tmp].x = pointsControle[tmp].x * Math.cos(angle) - pointsControle[tmp].y * Math.sin(angle);
-        pointsControle[tmp].y = pointsControle[tmp].x * Math.sin(angle) + pointsControle[tmp].y * Math.cos(angle);
+    for(let i =0; i < nbPoints; i++ ){
+        let tmpX = pointsControle[i].x;
+        let tmpY = pointsControle[i].y;
+        pointsControle[i].x = tmpX * Math.cos(angle) - tmpY * Math.sin(angle);
+        pointsControle[i].y = tmpX * Math.sin(angle) + tmpY * Math.cos(angle);
     }
     return pointsControle;
 }
 
 function translation(axe, constante, pointsControle){
-    let nbPoints = pointsControle.length;
-    for(let tmp =0; tmp < nbPoints; tmp++ ){
+    for(let i = 0; i < pointsControle.length; i++ ) {
         switch(axe){
             case 'x' :
-                pointsControle[tmp].x = pointsControle[tmp].x + constante;
-                return pointsControle;
+                pointsControle[i].x = pointsControle[i].x + constante;
             break;
 
             case 'y' :
-                pointsControle[tmp].y = pointsControle[tmp].y + constante;
-                return pointsControle;
+                pointsControle[i].y = pointsControle[i].y + constante;
             break;
         }
     }
+    return pointsControle;
 }

@@ -112,17 +112,25 @@ document.getElementById("courbe3").addEventListener("click",(event)=>{
 });
 
 document.getElementById("curseurX").addEventListener("change",(event)=>{
-    transX = document.getElementById("curseurX").value;
+    transX = -transX;
     tabPointsControle[IDSelectedCurve] = translation("x",transX, tabPointsControle[IDSelectedCurve]);
+    transX = (document.getElementById("curseurX").value - 500)/100;
+    tabPointsControle[IDSelectedCurve] = translation("x",transX, tabPointsControle[IDSelectedCurve]);
+
     refresh(true);
 });
 document.getElementById("curseurY").addEventListener("change",(event)=>{
-    transY = document.getElementById("curseurY").value;
+    transY = -transY;
     tabPointsControle[IDSelectedCurve] = translation("y",transY, tabPointsControle[IDSelectedCurve]);
+    transY = (document.getElementById("curseurY").value - 250)/100;
+    tabPointsControle[IDSelectedCurve] = translation("y",transY, tabPointsControle[IDSelectedCurve]);
+
     refresh(true);
 });
+
 document.getElementById("curseurRot").addEventListener("change",(event)=>{
-    angle = Math.PI * (document.getElementById("curseurRot").value);
+    angle = Math.PI * (document.getElementById("curseurRot").value)/100;
     tabPointsControle[IDSelectedCurve] = rotation(angle, tabPointsControle[IDSelectedCurve]);
+
     refresh(true);
 });
