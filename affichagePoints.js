@@ -118,5 +118,4 @@ function majAffichagePoints() {
     scene.add(configPlane());
     renderer.render(scene, camera);
     miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
-    initializationDragging(false);
 }
