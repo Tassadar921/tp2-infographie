@@ -26,9 +26,13 @@ let planeID;
 //indice de la ligne de tabPointsControle correspondant à la courbe affichée
 let IDSelectedCurve = 0;
 
+//remise à zero de tous les angles et translations
 let angle = 0;
 let transX = 0;
 let transY = 0;
+document.getElementById("curseurX").value = 500;
+document.getElementById("curseurY").value = 250;
+document.getElementById("curseurRot").value = 0;
 
 //par défaut bernstein, mais switch avec decasteljau en fonction du bouton cliqué
 let methode = "bernstein";
