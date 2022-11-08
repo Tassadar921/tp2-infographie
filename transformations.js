@@ -1,5 +1,3 @@
-let x;
-let y;
 function rotation(angle){
     let nbPoints = tabPointsControle[IDSelectedCurve].length;
     for(var tmp =0; tmp < nbPoints; tmp++ ){
