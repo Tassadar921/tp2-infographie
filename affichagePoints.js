@@ -32,7 +32,7 @@ function setupAffichagePoints() {
     
             document.getElementById("newUl").appendChild(createNewLi(id));
     
-            createArrowsButtonEvents("up",id);
+            createArrowsButtonEvents("Up",id);
             createArrowsButtonEvents("Down",id);
     
             majAffichagePoints();
