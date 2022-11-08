@@ -11,17 +11,17 @@ const objectCooBeforeDrag = new THREE.Vector3(
 //trigger chaque fois qu'on charge une courbe, first est un booléen qui est true au chargement de la page, false sinon
 initializationDragging = (first) => {
     const position = new THREE.Vector3();
-    if(!first){//quand on charge une courbe on désactive le draggable des anciens points et on en set un nouveau avec
-        //les nouveaux points (les enfants du plan, qui est lui-même enfant de la scène)
+    if(!first){//quand on charge une courbe on désactive le draggable des anciens points
         draggable.deactivate();
-        draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
-    }else{//au chargement on met un event qui trigger à chaque mouvement de pointer et qui check si le curseur est sur
+    }else{//au chargement de la page ajoute un event qui trigger à chaque mouvement de pointer et qui check si le curseur est sur
         //la hitbox de la trash ou non
         document.addEventListener('mousemove', (e) => {
             onTrash = (e.clientX>renderer.domElement.width-(20+50)&&e.clientX<renderer.domElement.width-20
             && e.clientY>20 && e.clientY<20+29)
         })
     }
+    //initialisation de draggable, qui permet de rendre draggable tous les enfants du plan
+    draggable = new DragControls(scene.getObjectById(planeID).children, camera, renderer.domElement);
 
     //trigger quand on pick un point
     draggable.addEventListener('dragstart', (e) => {

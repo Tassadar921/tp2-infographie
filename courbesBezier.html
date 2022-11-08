@@ -4,10 +4,10 @@
         <meta charset=utf-8>
         <title>three.js app</title>
         <style>body{margin: 0;}</style>
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="style/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div style="color:white; position:absolute; width:auto; height:auto; bottom:0px; background-color: black;">
+        <div id="bottom">
             <div>
                 <button id="bernstein">Berstein</button>
                 <button id="decasteljau">Decasteljau</button>
@@ -25,32 +25,36 @@
             </div>
         </div>
 
-        <div id="points" style="position:absolute; width:auto; padding-left: 5px; right:0px; top : 20%; background-color: white;">
-        </div>
-        <div id="curseurs" style="position:absolute; width:auto; padding-left: 5px; left:0px; top : 0%; background-color: white;">
+        <div id="points"></div>
+
+        <div id="curseurs">
             <input type="range" id="curseurX" name="curseurX"
-            min="0" max="1000" value="500">
+                   min="0" max="1000" value="500">
             <label for="curseurX">X</label>
 
             <input type="range" id="curseurY" name="curseurY"
-            min="0" max="500" value="250">
+                   min="0" max="500" value="250">
             <label for="curseurY">Y</label>
 
             <input type="range" id="curseurRot" name="curseurRot"
-            min="0" max="200" value="100">
+                   min="0" max="200" value="100">
             <label for="curseurRot">Rotation</label>
         </div>
 
-        <img src="trash.png" id="trash">
-        <script src="three.js"></script>
-        <script src="maj.js"></script>
-        <script src="creationCourbeBernstein.js"></script>
-        <script src="creationCourbeDecasteljau.js"></script>
-        <script src="drag&drop.js"></script>
-        <script src="DragControls.js"></script>
-        <script src="affichagePoints.js"></script>
-        <script src="affichageEx.js"></script>
-        <script src="transformations.js"></script>
-        <script src="courbesBezier.js"></script>
+<!--        on place l'image de la poubelle en absolute au dessus du graphique car impossible de charger-->
+<!--        une texture sur une mesh dans threejs en front-end uniquement, on a des CORS policy errors-->
+<!--        il faudrait pour cela un serveur-->
+        <img src="img/trash.png" id="trash" alt="Trash">
+
+        <script src="lib/three.js"></script>
+        <script src="js/maj.js"></script>
+        <script src="js/creationCourbeBernstein.js"></script>
+        <script src="js/creationCourbeDecasteljau.js"></script>
+        <script src="js/drag&drop.js"></script>
+        <script src="lib/DragControls.js"></script>
+        <script src="js/affichagePoints.js"></script>
+        <script src="js/affichageEx.js"></script>
+        <script src="js/transformations.js"></script>
+        <script src="js/courbesBezier.js"></script>
     </body>
 </html>
