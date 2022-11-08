@@ -1,4 +1,6 @@
 function setupAffichagePoints() {
+    document.getElementById('points').innerHTML = "";
+
     let newUl = document.createElement('ul');
     newUl.setAttribute('id', 'newUl');
     newUl.style = 'padding: 10px;';
@@ -13,7 +15,6 @@ function setupAffichagePoints() {
     document.getElementById('points').appendChild(createNewButton('ajouter'));
 
     initEventListenersAffichagePoints();
-
 }
 
 function createArrowsButtonEvents(way, id) {
@@ -66,7 +67,7 @@ function createDeleteButtonEvents(id){
             document.getElementById("li"+id).remove();
     
             scene.getObjectById(planeID).children = [];
-            majAffichagePoints();
+            setupAffichagePoints();
             clear();
             miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
             initializationDragging(false);    
@@ -144,6 +145,7 @@ function createNewButton(name) {
 
 function majAffichagePoints() {
     document.getElementById("nomCourbe").innerHTML = 'Courbe n°' + (IDSelectedCurve + 1);
+    console.log(tabPointsControle[IDSelectedCurve])
     for (let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
         let letters = ['x', 'y'];
         for (let j = 0; j < letters.length; j++) {
