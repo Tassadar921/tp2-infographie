@@ -18,6 +18,7 @@ refresh = (checked) => {
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
         initializationDragging();
     }
+    majAffichagePoints()
 };
 
 document.getElementById("bernstein").style = "background-color: lightgrey;";

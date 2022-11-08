@@ -1,18 +1,26 @@
-if(IDSelectedCurve == 0){
-    document.getElementById("points").appendChild="<li><p> (" + tabPointsControle[0][0].x +";" + tabPointsControle[0][0].y + "</p></li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[0][1] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[0][2] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[0][3] + "</li>";
-}
-else if(IDSelectedCurve == 1){
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[1][0] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[1][1] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[1][2] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[1][3] + "</li>";
-}
-else if(IDSelectedCurve == 2){
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[2][0] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[2][1] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[2][2] + "</li>";
-    document.getElementById("points").innerHTML="<li>" + tabPointsControle[2][3] + "</li>";
+function majAffichagePoints() {
+    let newUl = document.createElement("ul");
+    newUl.setAttribute("id","newUl")
+    newUl.style = "padding: 10px;";
+    newUl.innerHTML += "<p> Courbe n°" + (IDSelectedCurve+1) + "</p>"
+    for(let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
+        let newLi = document.createElement("li");
+    
+    
+        let letters = ['x','y'];
+        for(let j = 0; j < letters.length; j++){
+            newLi.innerHTML += letters[j] + " : ";
+            let newInput = document.createElement("input");
+            newInput.style = "width : 30px;";
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("name", letters[j] + IDSelectedCurve);
+            newInput.setAttribute("id", letters[j] + IDSelectedCurve);
+            newInput.setAttribute("value", tabPointsControle[IDSelectedCurve][i].getComponent(j));
+            newLi.appendChild(newInput)
+        }    
+        newUl.appendChild(newLi);
+    }
+    
+    document.getElementById("points").innerHTML = "";
+    document.getElementById("points").appendChild(newUl);
 }
