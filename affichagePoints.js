@@ -32,11 +32,10 @@ function majAffichagePoints() {
     document.getElementById("saveButton").addEventListener("click", (event)=>{
         event.preventDefault();
         for(let i = 0; i < tabPointsControle[IDSelectedCurve].length; i++) {
-            console.log("x"+i);
             tabPointsControle[IDSelectedCurve][i].x = document.getElementById("x"+i).value;
             tabPointsControle[IDSelectedCurve][i].y = document.getElementById("y"+i).value;
         }
-    
+        scene.getObjectById(planeID).children = [];
         clear();
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
     });

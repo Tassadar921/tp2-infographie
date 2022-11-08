@@ -38,6 +38,7 @@ initializationDragging = (first) => {
         position.setFromMatrixPosition(e.object.matrixWorld);
         tabPointsControle[IDSelectedCurve][e.object.userData.id].x = e.object.geometry.attributes.position.array[0] + position.x;
         tabPointsControle[IDSelectedCurve][e.object.userData.id].y = e.object.geometry.attributes.position.array[1] + position.y;
+        majAffichagePoints();
         clear();
         miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
     });
