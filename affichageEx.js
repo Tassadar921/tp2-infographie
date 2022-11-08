@@ -111,26 +111,43 @@ document.getElementById("courbe3").addEventListener("click",(event)=>{
     refresh(document.getElementById('courbe3').checked);
 });
 
-document.getElementById("curseurX").addEventListener("change",(event)=>{
+document.getElementById("curseurX").addEventListener("mousemove",(event)=>{
     transX = -transX;
     tabPointsControle[IDSelectedCurve] = translation("x",transX, tabPointsControle[IDSelectedCurve]);
     transX = (document.getElementById("curseurX").value - 500)/100;
     tabPointsControle[IDSelectedCurve] = translation("x",transX, tabPointsControle[IDSelectedCurve]);
 
-    refresh(true);
+    scene = new THREE.Scene();
+    scene.add(configPlane());
+    renderer.render(scene, camera);
+    miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+    initializationDragging(false);
+    setupAffichagePoints();
 });
-document.getElementById("curseurY").addEventListener("change",(event)=>{
+document.getElementById("curseurY").addEventListener("mousemove",(event)=>{
     transY = -transY;
     tabPointsControle[IDSelectedCurve] = translation("y",transY, tabPointsControle[IDSelectedCurve]);
     transY = (document.getElementById("curseurY").value - 250)/100;
     tabPointsControle[IDSelectedCurve] = translation("y",transY, tabPointsControle[IDSelectedCurve]);
 
-    refresh(true);
+    scene = new THREE.Scene();
+    scene.add(configPlane());
+    renderer.render(scene, camera);
+    miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+    initializationDragging(false);
+    setupAffichagePoints();
 });
 
-document.getElementById("curseurRot").addEventListener("change",(event)=>{
+document.getElementById("curseurRot").addEventListener("mousemove",(event)=>{
+    angle = -angle;
+    tabPointsControle[IDSelectedCurve] = rotation(angle, tabPointsControle[IDSelectedCurve]);
     angle = Math.PI * (document.getElementById("curseurRot").value)/100;
     tabPointsControle[IDSelectedCurve] = rotation(angle, tabPointsControle[IDSelectedCurve]);
 
-    refresh(true);
+    scene = new THREE.Scene();
+    scene.add(configPlane());
+    renderer.render(scene, camera);
+    miseAJour(chargeDraw(tabPointsControle[IDSelectedCurve], methode));
+    initializationDragging(false);
+    setupAffichagePoints();
 });
