@@ -101,6 +101,7 @@ function initEventListenersAffichagePoints() {
 
         createArrowsButtonEvents('Up', id);
         createArrowsButtonEvents('Down', id);
+        createDeleteButtonEvents(id);
 
         majAffichagePoints();
         clear();
